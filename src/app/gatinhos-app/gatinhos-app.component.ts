@@ -8,31 +8,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gatinhos-app.component.scss']
 })
 export class GatinhosAppComponent implements OnInit {
-  gatinho!: IGatinhos;
+  gatinho!: IGatinhos[];
+  modal = false;
 
   constructor(private gatinhoService: GatinhoService) { }
 
   ngOnInit(): void {
     this.pegaGatinho();
-    console.log(this.gatinho);
-
+    this.gatoPerdido();
   }
 
   exibeGatin() {
-    console.log('gatin');
+    this.modal = !this.modal;
+    console.log(this.gatinho);
 
   }
 
   pegaGatinho() {
     this.gatinhoService.getGatinhos()
     .subscribe((gato) => {
-      console.log(gato);
+      this.gatinho = gato;
       this.mapperGatinho(this.gatinho)
+      console.log(this.gatinho);
     })
   }
 
-  mapperGatinho(gato: IGatinhos) {
-    this.gatinho = gato;
+  mapperGatinho(gato: IGatinhos[]) {
+    return this.gatinho = gato;
+  }
+
+  gatoPerdido() {
+    // for (let i = 0; i < this.gatinho.length; i++) {
+    //   const element = this.gatinho[i];
+    //   console.log(element);
+
+
+    // }
   }
 
 }
