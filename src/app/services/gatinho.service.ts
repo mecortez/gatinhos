@@ -1,11 +1,18 @@
+import { IGatinhos } from './../interfaces/gatinhos';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GatinhoService {
-  private url = 'https://api.thecatapi.com/v1/images/search/';
+  // public url = 'https://api.thecatapi.com/v1/images/search/';
 
-  constructor() { console.log(this.url);
+  constructor(private http:HttpClient) { }
+
+  getGatinhos() {
+    return this.http.get<IGatinhos[]>(`${environment.API_URL}`);
   }
+
 }
