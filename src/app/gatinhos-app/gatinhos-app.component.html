@@ -7,11 +7,9 @@
 </div>
 <div *ngIf="modal">
   <div class="background-modal">
-    <div class="modal">
-      Oi
+    <div class="modal" *ngIf="gatinho$ | async as gatos">
+      <img *ngFor="let gato of gatos" src="{{gato.url}}" alt="foto do gatinho">
     </div>
   </div>
-
 </div>
-
 <!-- <app-modal #modal ></app-modal> -->
